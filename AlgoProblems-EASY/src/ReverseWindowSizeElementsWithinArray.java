@@ -14,7 +14,8 @@ public class ReverseWindowSizeElementsWithinArray {
             reverse(arr, startIndex, endIndex);
             i += window;
         }
-        int startIndex = i, endIndex = len-1;
+        int startIndex = i;
+        int endIndex = len-1;
         reverse(arr, startIndex, endIndex);
         System.out.println(Arrays.toString(arr));
     }
