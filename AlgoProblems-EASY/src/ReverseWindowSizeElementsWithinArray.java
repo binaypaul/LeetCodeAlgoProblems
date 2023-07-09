@@ -2,32 +2,34 @@ import java.util.Arrays;
 
 public class ReverseWindowSizeElementsWithinArray {
     public static void main(String[] args) {
-        int arr[] = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-                            // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-        int window = 5;
-
-        int len = arr.length;
-        int i = 0;
-        while(i < len - (window - 1)) {
-            int startIndex = i;
-            int endIndex = i + window - 1;
-            reverse(arr, startIndex, endIndex);
-            i += window;
+        int array[] = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+        int k = 5;
+        //o/p: [3,2,1,6,5,4,9,8,7,11,10]
+        System.out.println(Arrays.toString(array));
+        int currentI = 0;
+        for(int i = 0; i < array.length; i=i+k) {
+            int start = i;
+            int end  = i + k - 1;
+            if(end < array.length-1) {
+                //reverse logic
+                while (start < end) {
+                    int temp = array[start];
+                    array[start] = array[end];
+                    array[end] = temp;
+                    start++;
+                    end--;
+                }
+            }
+            currentI = i;
         }
-        int startIndex = i;
-        int endIndex = len-1;
-        reverse(arr, startIndex, endIndex);
-        System.out.println(Arrays.toString(arr));
-    }
-
-    public static void reverse(int[] arr, int startIndex, int endIndex) {
-        while(startIndex < endIndex) {
-            int startEle = arr[startIndex];
-            arr[startIndex] = arr[endIndex];
-            arr[endIndex] = startEle;
-
-            startIndex++;
-            endIndex--;
+        int endI = array.length-1;
+        while (currentI < endI) {
+            int temp = array[currentI];
+            array[currentI] = array[endI];
+            array[endI] = temp;
+            currentI++;
+            endI--;
         }
+        System.out.println(Arrays.toString(array));
     }
 }
